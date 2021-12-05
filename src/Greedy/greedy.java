@@ -51,8 +51,7 @@ public class greedy {
 		
 		StringTokenizer st2 = new StringTokenizer(br.readLine());
 		
-		 for (int i = 0; i < N; i++)
-	    {
+		for (int i = 0; i < N; i++){
 	        numList.add( Integer.parseInt(st2.nextToken())); 
 	    }
 		
