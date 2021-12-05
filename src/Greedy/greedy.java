@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -12,21 +13,20 @@ import java.util.StringTokenizer;
 public class greedy {
 	private static final int coinType [] = {500, 100, 50, 10};
 	
-	public static void main(String [] arg){
+	public static void main(String [] arg) throws IOException {
+		
 		//getLeastCoinCnt();
-		try {
-			theLowOfLargeNum();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//theLowOfLargeNum();
+		//cardNumGame();
+		untilToNum1();
 	}
 	
+	static Scanner sc = new Scanner(System.in);
 	
 	// 01. 거스름돈 동전 최소 갯수 구하기
 	public static void  getLeastCoinCnt() {
 		int cnt = 0;
 		int n;
-		Scanner sc = new Scanner(System.in);
 		System.out.println("가격을 입력하세요.");
 		n = sc.nextInt();
 
@@ -36,10 +36,10 @@ public class greedy {
 		}
 		System.out.println("필요한 동전의 최소 갯수" + cnt + "개");
 	}
+	
 
 	// 02. 큰 수의 법칙
 	public static void theLowOfLargeNum () throws IOException {
-		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
@@ -75,5 +75,43 @@ public class greedy {
 	
 	}
 	
+	// 03. 가장 높은 숫자가 적힌 카드 뽑기 (N*M 행열)
+	public static void cardNumGame () throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+	    
+		int row = Integer.parseInt(st.nextToken());
+        String[] minArr = new String[row];
+
+        for(int i = 0; i < row; i++)
+        {
+            String s = br.readLine();
+            String[] arr = s.split(" ");
+
+           Arrays.sort(arr);
+
+            minArr[i] = arr[0];
+        }
+        Arrays.sort(minArr);
+        System.out.println(minArr[row-1]);
+	}
+	
+	// 04. 1이 될 때까지
+	public static void untilToNum1 () {
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		
+		int resultCnt = 0;
+		
+		while (N != 1) {
+			if(N % K == 0) {
+				N /= K;
+				resultCnt ++;
+			} else {
+				N --;
+			}
+		}
+		System.out.println(resultCnt);
+	}
 	
 }
